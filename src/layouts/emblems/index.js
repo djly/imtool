@@ -36,6 +36,7 @@ function Emblems() {
       <DashboardNavbar />
       <MDBox>
         <EmblemTree />
+        <MDBox p={2}>You can share your build with others by copying the url</MDBox>
       </MDBox>
     </DashboardLayout>
   );
