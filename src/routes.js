@@ -37,7 +37,7 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
+import Emblems from "layouts/emblems";
 import SpeedCalc from "layouts/speedcalc";
 import Billing from "layouts/billing";
 import RTL from "layouts/rtl";
@@ -68,11 +68,12 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Tables",
-    key: "tables",
+    name: "Emblems",
+    key: "emblems",
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
+    route: "/emblems/*",
+    component: <Emblems />,
+    exact: false,
   },
   {
     type: "collapse",
