@@ -50,7 +50,7 @@ function calculateURL(arr) {
     output += `${base62string}`;
     if (i < 2) output += "-";
   }
-  window.history.replaceState(null, "New Page Title", `/emblems/${output}`);
+  window.history.replaceState(null, "New Page Title", `/imtool/emblems/${output}`);
 }
 
 // Material Dashboard 2 React reducer

@@ -118,7 +118,7 @@ export default function App() {
       if (route.route) {
         return (
           <Route
-            exact={route.exact ? route.exact : true}
+            exact={route.exact !== undefined ? route.exact : true}
             path={route.route}
             element={route.component}
             key={route.key}
@@ -174,7 +174,7 @@ export default function App() {
         {layout === "vr" && <Configurator />}
         <Routes>
           {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="*" element={<Navigate to="/imtool/dashboard" />} />
         </Routes>
       </ThemeProvider>
     </CacheProvider>
@@ -198,7 +198,7 @@ export default function App() {
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="*" element={<Navigate to="/imtool/dashboard" />} />
       </Routes>
     </ThemeProvider>
   );
