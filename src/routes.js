@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /**
 =========================================================
 * Material Dashboard 2 React - v2.1.0
@@ -49,13 +50,15 @@ import SignUp from "layouts/authentication/sign-up";
 // @mui icons
 import Icon from "@mui/material/Icon";
 
+const repoName = "/imtool";
+
 const routes = [
   {
     type: "collapse",
     name: "Dashboard",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
+    route: repoName + "/dashboard",
     component: <Dashboard />,
   },
   {
@@ -63,7 +66,7 @@ const routes = [
     name: "Speed Tune",
     key: "Speed Tune",
     icon: <Icon fontSize="small">calculate</Icon>,
-    route: "/speedtune",
+    route: repoName + "/speedtune",
     component: <SpeedCalc />,
   },
   {
@@ -71,7 +74,7 @@ const routes = [
     name: "Emblems",
     key: "emblems",
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/emblems/*",
+    route: repoName + "/emblems/*",
     component: <Emblems />,
     exact: false,
   },
@@ -80,7 +83,7 @@ const routes = [
     name: "Billing",
     key: "billing",
     icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
+    route: repoName + "/billing",
     component: <Billing />,
   },
   {
@@ -88,7 +91,7 @@ const routes = [
     name: "RTL",
     key: "rtl",
     icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
+    route: repoName + "/rtl",
     component: <RTL />,
   },
   {
@@ -96,7 +99,7 @@ const routes = [
     name: "Notifications",
     key: "notifications",
     icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
+    route: repoName + "/notifications",
     component: <Notifications />,
   },
   {
@@ -104,7 +107,7 @@ const routes = [
     name: "Profile",
     key: "profile",
     icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
+    route: repoName + "/profile",
     component: <Profile />,
   },
   {
@@ -112,7 +115,7 @@ const routes = [
     name: "Sign In",
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
+    route: repoName + "/authentication/sign-in",
     component: <SignIn />,
   },
   {
@@ -120,7 +123,7 @@ const routes = [
     name: "Sign Up",
     key: "sign-up",
     icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
+    route: repoName + "/authentication/sign-up",
     component: <SignUp />,
   },
 ];
