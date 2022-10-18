@@ -19,6 +19,7 @@ import Card from "@mui/material/Card";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
+import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React example components
@@ -27,15 +28,35 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
+import { useSkillsContext, setResetSkills } from "context/skillsContext";
+
 // Data
 import EmblemTree from "layouts/emblems/components/emblem.tree.component";
 
 function Emblems() {
+  const [controller, dispatch] = useSkillsContext();
+
+  function resetTree() {
+    setResetSkills(dispatch, {});
+  }
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox>
         <EmblemTree />
+        <MDBox p={2} mt="auto">
+          <MDButton
+            component="a"
+            rel="noreferrer"
+            variant="gradient"
+            fullWidth
+            onClick={(e) => resetTree()}
+            onKeyPress={(e) => resetTree()}
+          >
+            Reset Tree
+          </MDButton>
+        </MDBox>
         <MDBox p={2}>You can share your build with others by copying the url</MDBox>
       </MDBox>
     </DashboardLayout>

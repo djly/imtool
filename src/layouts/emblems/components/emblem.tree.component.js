@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 import { Component } from "react";
 import EmblemTreeGroup from "./emblem.tree.group.component";
 import attackTree from "../data/attackTree";
@@ -14,10 +14,10 @@ class EmblemTree extends Component {
 
   render() {
     return (
-      <Grid container direction="row" justifyContent="center" alignItems="center">
+      <Grid container direction="row" justifyContent="center" alignItems="stretch">
         {this.groups.map((group, i) => (
-          <Grid item xs={4} key={group.name}>
-            {group.name}
+          <Grid item p={2} xs={4} key={group.name}>
+            <h2>{group.name}</h2>
             <EmblemTreeGroup {...group} tree={i} />
           </Grid>
         ))}

@@ -4,9 +4,9 @@ import EmblemTreeTier from "./emblem.tree.tier.component";
 function EmblemTreeGroup(props) {
   const { name, tiers, tree } = props;
   return (
-    <Grid container direction="column" justifyContent="center" alignItems="center">
+    <Grid container direction="column" justifyContent="center" alignItems="stretch">
       {tiers.map((tier, i) => (
-        <Grid item xs={4} key={tier.tier}>
+        <Grid item xs={12} key={tier.tier}>
           <EmblemTreeTier {...tier} tier={i} tree={tree} />
         </Grid>
       ))}

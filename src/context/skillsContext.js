@@ -26,13 +26,40 @@ import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import base62 from "base62";
 
+const BLANK_SKILL_TREE = {
+  0: {
+    0: { 0: 0, 1: 0 },
+    1: { 0: 0, 1: 0, 2: 0 },
+    2: { 0: 0, 1: 0, 2: 0 },
+    3: { 0: 0, 1: 0, 2: 0 },
+    4: { 0: 0, 1: 0, 2: 0 },
+    5: { 0: 0, 1: 0 },
+  },
+  1: {
+    0: { 0: 0, 1: 0 },
+    1: { 0: 0, 1: 0, 2: 0 },
+    2: { 0: 0, 1: 0, 2: 0 },
+    3: { 0: 0, 1: 0, 2: 0 },
+    4: { 0: 0, 1: 0, 2: 0 },
+    5: { 0: 0, 1: 0 },
+  },
+  2: {
+    0: { 0: 0, 1: 0 },
+    1: { 0: 0, 1: 0, 2: 0 },
+    2: { 0: 0, 1: 0, 2: 0 },
+    3: { 0: 0, 1: 0, 2: 0 },
+    4: { 0: 0, 1: 0, 2: 0 },
+    5: { 0: 0, 1: 0 },
+  },
+};
+
 // Material Dashboard 2 React main context
 const CurrentSkills = createContext();
 
 // Setting custom name for the context which is visible on react dev tools
 CurrentSkills.displayName = "CurrentSkillsContext";
 
-function calculateURL(arr, setSearchParams) {
+function calculateURL(arr) {
   let output = "";
   for (let i = 0; i < 3; i++) {
     let tier = "";
@@ -50,7 +77,7 @@ function calculateURL(arr, setSearchParams) {
     output += `${base62string}`;
     if (i < 2) output += "-";
   }
-  window.history.replaceState(null, "Emblems", `/imtool/emblems?tree=${output}`);
+  return output;
 }
 
 // Material Dashboard 2 React reducer
@@ -59,7 +86,16 @@ function reducer(state, action) {
     case "CURRENT_SKILLS": {
       const newArray = state.currentSkills;
       newArray[action.value.tree][action.value.tier][action.value.slot] = action.value.value;
-      calculateURL(newArray);
+      const output = calculateURL(newArray);
+      window.history.replaceState(null, "Emblems", `/imtool/emblems?tree=${output}`);
+      return { ...state, currentSkills: newArray };
+    }
+    case "RESET_SKILLS": {
+      console.log("Resetting Skills");
+      const newArray = JSON.parse(JSON.stringify(BLANK_SKILL_TREE));
+      const output = calculateURL(newArray);
+      console.log("new value", output);
+      window.history.replaceState(null, "Emblems", `/imtool/emblems?tree=${output}`);
       return { ...state, currentSkills: newArray };
     }
     default: {
@@ -78,33 +114,7 @@ function calculateStartingCurrentSkills() {
   });
 
   const skillsbase62 = params.tree;
-  console.log(skillsbase62);
-  const skills = {
-    0: {
-      0: { 0: 0, 1: 0 },
-      1: { 0: 0, 1: 0, 2: 0 },
-      2: { 0: 0, 1: 0, 2: 0 },
-      3: { 0: 0, 1: 0, 2: 0 },
-      4: { 0: 0, 1: 0, 2: 0 },
-      5: { 0: 0, 1: 0 },
-    },
-    1: {
-      0: { 0: 0, 1: 0 },
-      1: { 0: 0, 1: 0, 2: 0 },
-      2: { 0: 0, 1: 0, 2: 0 },
-      3: { 0: 0, 1: 0, 2: 0 },
-      4: { 0: 0, 1: 0, 2: 0 },
-      5: { 0: 0, 1: 0 },
-    },
-    2: {
-      0: { 0: 0, 1: 0 },
-      1: { 0: 0, 1: 0, 2: 0 },
-      2: { 0: 0, 1: 0, 2: 0 },
-      3: { 0: 0, 1: 0, 2: 0 },
-      4: { 0: 0, 1: 0, 2: 0 },
-      5: { 0: 0, 1: 0 },
-    },
-  };
+  const skills = JSON.parse(JSON.stringify(BLANK_SKILL_TREE));
 
   if (skillsbase62 === undefined || skillsbase62 === null) {
     return skills;
@@ -175,5 +185,6 @@ CurrentSkillsProvider.propTypes = {
 
 // Context module functions
 const setCurrentSkills = (dispatch, value) => dispatch({ type: "CURRENT_SKILLS", value });
+const setResetSkills = (dispatch, value) => dispatch({ type: "RESET_SKILLS", value });
 
-export { CurrentSkillsProvider, useSkillsContext, setCurrentSkills };
+export { CurrentSkillsProvider, useSkillsContext, setCurrentSkills, setResetSkills };
