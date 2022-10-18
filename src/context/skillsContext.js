@@ -88,15 +88,17 @@ function reducer(state, action) {
       newArray[action.value.tree][action.value.tier][action.value.slot] = action.value.value;
       const output = calculateURL(newArray);
       window.history.replaceState(null, "Emblems", `/imtool/emblems?tree=${output}`);
-      return { ...state, currentSkills: newArray };
+      return { ...state, currentSkills: newArray, copied: false };
     }
     case "RESET_SKILLS": {
       console.log("Resetting Skills");
       const newArray = JSON.parse(JSON.stringify(BLANK_SKILL_TREE));
       const output = calculateURL(newArray);
-      console.log("new value", output);
       window.history.replaceState(null, "Emblems", `/imtool/emblems?tree=${output}`);
-      return { ...state, currentSkills: newArray };
+      return { ...state, currentSkills: newArray, copied: false };
+    }
+    case "COPY_SKILLS": {
+      return { ...state, copied: true };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -186,5 +188,12 @@ CurrentSkillsProvider.propTypes = {
 // Context module functions
 const setCurrentSkills = (dispatch, value) => dispatch({ type: "CURRENT_SKILLS", value });
 const setResetSkills = (dispatch, value) => dispatch({ type: "RESET_SKILLS", value });
+const setCopiedSkills = (dispatch) => dispatch({ type: "COPY_SKILLS" });
 
-export { CurrentSkillsProvider, useSkillsContext, setCurrentSkills, setResetSkills };
+export {
+  CurrentSkillsProvider,
+  useSkillsContext,
+  setCurrentSkills,
+  setResetSkills,
+  setCopiedSkills,
+};

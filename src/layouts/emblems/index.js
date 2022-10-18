@@ -28,16 +28,29 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
-import { useSkillsContext, setResetSkills } from "context/skillsContext";
+import { useSkillsContext, setResetSkills, setCopiedSkills } from "context/skillsContext";
+
+import { useState } from "react";
 
 // Data
 import EmblemTree from "layouts/emblems/components/emblem.tree.component";
 
 function Emblems() {
   const [controller, dispatch] = useSkillsContext();
+  const { copied } = controller;
 
   function resetTree() {
     setResetSkills(dispatch, {});
+  }
+
+  function copy() {
+    const el = document.createElement("input");
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    setCopiedSkills(dispatch);
   }
 
   return (
@@ -57,7 +70,10 @@ function Emblems() {
             Reset Tree
           </MDButton>
         </MDBox>
-        <MDBox p={2}>You can share your build with others by copying the url</MDBox>
+        <MDBox p={2}>
+          You can share your build with others by copying the url{" "}
+          <MDButton onClick={(e) => copy()}>{!copied ? "Copy URL" : "Copied!"}</MDButton>
+        </MDBox>
       </MDBox>
     </DashboardLayout>
   );
