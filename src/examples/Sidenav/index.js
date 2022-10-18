@@ -88,7 +88,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
     ({ type, name, icon, title, noCollapse, key, href, route, noSideNav }) => {
       let returnValue;
       if (noSideNav) {
-        return <div />;
+        return <div key={key} />;
       }
       if (type === "collapse") {
         returnValue = href ? (

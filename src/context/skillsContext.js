@@ -32,7 +32,7 @@ const CurrentSkills = createContext();
 // Setting custom name for the context which is visible on react dev tools
 CurrentSkills.displayName = "CurrentSkillsContext";
 
-function calculateURL(arr) {
+function calculateURL(arr, setSearchParams) {
   let output = "";
   for (let i = 0; i < 3; i++) {
     let tier = "";
@@ -50,7 +50,7 @@ function calculateURL(arr) {
     output += `${base62string}`;
     if (i < 2) output += "-";
   }
-  window.history.replaceState(null, "New Page Title", `/imtool/emblems/${output}`);
+  window.history.replaceState(null, "Emblems", `/imtool/emblems?tree=${output}`);
 }
 
 // Material Dashboard 2 React reducer
@@ -71,7 +71,13 @@ function reducer(state, action) {
 function calculateStartingCurrentSkills() {
   const location = useLocation();
   const array = location.pathname.split("/");
-  const skillsbase62 = array[array.length - 1];
+  const lastItem = array[array.length - 1];
+
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+
+  const skillsbase62 = params.tree;
   console.log(skillsbase62);
   const skills = {
     0: {
@@ -100,7 +106,7 @@ function calculateStartingCurrentSkills() {
     },
   };
 
-  if (skillsbase62 === "tables") {
+  if (skillsbase62 === undefined || skillsbase62 === null) {
     return skills;
   }
 
