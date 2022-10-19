@@ -185,8 +185,8 @@ export default function supportTree() {
       },
       {
         tier: 5,
-        maxInTier: 1,
-        maxInGroup: 1,
+        maxInTier: 3,
+        maxInGroup: 2,
         skills: [
           {
             name: "name1",
