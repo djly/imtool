@@ -141,7 +141,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 <IconButton sx={navbarIconButton} size="small" disableRipple>
                   <Icon sx={iconsStyle}>account_circle</Icon>
                 </IconButton>
-              </Link>
+        </Link> */}
               <IconButton
                 size="small"
                 disableRipple
@@ -152,7 +152,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 <Icon sx={iconsStyle} fontSize="medium">
                   {miniSidenav ? "menu_open" : "menu"}
                 </Icon>
-              </IconButton> */}
+              </IconButton>
               {/* <IconButton
                 size="small"
                 disableRipple
