@@ -51,7 +51,7 @@ import SignUp from "layouts/authentication/sign-up";
 // @mui icons
 import Icon from "@mui/material/Icon";
 
-const repoName = "/imtool";
+const repoName = "";
 
 const routes = [
   {

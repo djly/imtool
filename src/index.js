@@ -23,7 +23,7 @@ import { MaterialUIControllerProvider } from "context";
 import { CurrentSkillsProvider } from "context/skillsContext";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/imtool">
     <MaterialUIControllerProvider>
       <CurrentSkillsProvider>
         <App />
