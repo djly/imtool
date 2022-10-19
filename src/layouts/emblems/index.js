@@ -72,7 +72,8 @@ function Emblems() {
         </MDBox>
         <MDBox p={2}>
           You can share your build with others by copying the url{" "}
-          <MDButton onClick={(e) => copy()}>{!copied ? "Copy URL" : "Copied!"}</MDButton>
+          <MDButton onClick={(e) => copy()}>{!copied ? "Copy URL" : "Copied!"}</MDButton> You can @
+          me in IMR discord djly#3677 if you have any feedback
         </MDBox>
       </MDBox>
     </DashboardLayout>

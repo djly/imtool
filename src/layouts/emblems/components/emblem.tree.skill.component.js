@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { Tooltip, Grid } from "@mui/material";
 import { useSkillsContext, setCurrentSkills } from "context/skillsContext";
-import { useState, useContext } from "react";
-import MDBox from "components/MDBox";
+import { styled } from "@mui/material/styles";
+import { tooltipClasses } from "@mui/material/Tooltip";
 
 const bgSkillColor = {
   0: "transparent",
@@ -10,6 +10,18 @@ const bgSkillColor = {
   2: "#BBB",
   3: "#AFA",
 };
+
+const HtmlTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: "#f5f5f9",
+    color: "rgba(0, 0, 0, 0.87)",
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    border: "1px solid #dadde9",
+  },
+}));
 
 function EmblemTreeSkill(props) {
   const { name, desc, max, img, tier, slot, tree, maxInGroup, maxInTier } = props;
@@ -70,9 +82,11 @@ function EmblemTreeSkill(props) {
       setCurrentSkills(dispatch, { tree, tier, slot, value: newValue });
     }
   }
+
+  const tooltipHTML = desc;
   return (
     <div>
-      <Tooltip title={desc}>
+      <HtmlTooltip title={tooltipHTML}>
         <Grid
           container
           direction="column"
@@ -88,7 +102,7 @@ function EmblemTreeSkill(props) {
             {currentValue}/{max}
           </div>
         </Grid>
-      </Tooltip>
+      </HtmlTooltip>
     </div>
   );
 }
