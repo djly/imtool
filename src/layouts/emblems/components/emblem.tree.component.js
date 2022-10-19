@@ -16,7 +16,7 @@ class EmblemTree extends Component {
     return (
       <Grid container direction="row" justifyContent="center" alignItems="stretch">
         {this.groups.map((group, i) => (
-          <Grid item p={2} xs={4} key={group.name}>
+          <Grid item p={2} xs={12} sm={4} key={group.name}>
             <h2>{group.name}</h2>
             <EmblemTreeGroup {...group} tree={i} />
           </Grid>
